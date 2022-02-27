@@ -125,8 +125,54 @@ public static void main(String[] args) {
 						ArrayList<String> al = stDaoObj.viewStudent();
 						System.out.println(al);
 						break;
-							
-					case 3: //.. logout
+					case 3:	//.. edit student
+						System.out.println("\nEnter Roll no: ");
+						int rollNo = sc.nextInt();
+						System.out.println("Student Name: ");
+						String stName1 = sc.next();
+						
+						System.out.println("Email: ");
+						String stEmail1 = sc.next();
+						
+						System.out.println("Course: ");
+						String stCourse1 = sc.next();
+						
+						System.out.println("Fee: ");
+						int stFee1 = sc.nextInt();
+						
+						System.out.println("Paid: ");
+						int stPaid1 = sc.nextInt();
+						
+						int stDue1 = stFee1-stPaid1;
+						
+						System.out.println("Address: ");
+						String stAddress1 = sc.next();
+						
+						System.out.println("City: ");
+						String stCity1 = sc.next();
+						
+						System.out.println("State: ");
+						String stState1 = sc.next();
+						
+						System.out.println("Country: ");
+						String stCountry1 = sc.next();
+						
+						System.out.println("Contact No: ");
+						String stContact1 = sc.next();
+						
+						Student student1 = new Student(stName1, stEmail1, stCourse1, stFee1, stPaid1, stDue1, stAddress1, stCity1, stState1, stCountry1, stContact1);
+						boolean check = stDaoObj.editStudent(rollNo,student1);
+						if(check) {
+							System.out.println("Student Updated Successfully");
+						}
+						break;
+					case 4: //.. due fee
+						System.out.println("\nEnter Roll no: ");
+						int rollNo1 = sc.nextInt();
+						ArrayList<Integer> al1 = stDaoObj.dueFee(rollNo1);
+						System.out.println("Due Fees: "+al1);
+						break;
+					case 5: //.. logout
 						flag3=true;
 					}
 				}while(flag3==false);
