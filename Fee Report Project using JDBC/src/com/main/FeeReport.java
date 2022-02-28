@@ -38,16 +38,19 @@ public static void main(String[] args) {
 					
 					switch(ch) {
 					case 1:	//.. add accountant
+						Accountant accountant = new Accountant();
 						System.out.println("Accountant Name: ");
-						String accName = sc.next();
-						System.out.println("Password: ");
-						String accPass = sc.next();
-						System.out.println("Email: ");
-						String accEmail = sc.next();
-						System.out.println("Contact No: ");
-						long accContact = sc.nextLong();
+						accountant.setName(adminName);
 						
-						Accountant accountant = new Accountant(accName,accPass,accEmail,accContact);
+						System.out.println("Password: ");
+						accountant.setPassword(sc.next());
+						
+						System.out.println("Email: ");
+						accountant.setEmail(sc.next());
+						
+						System.out.println("Contact No: ");
+						accountant.setContactno(sc.nextLong());
+			
 						boolean check = acntDaoObj.addAccountant(accountant);
 						if(check) {
 							 System.out.println("Accountant Record is inserted successfully !!!");
