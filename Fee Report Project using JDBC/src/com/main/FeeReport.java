@@ -40,7 +40,7 @@ public static void main(String[] args) {
 					case 1:	//.. add accountant
 						Accountant accountant = new Accountant();
 						System.out.println("Accountant Name: ");
-						accountant.setName(adminName);
+						accountant.setName(sc.next());
 						
 						System.out.println("Password: ");
 						accountant.setPassword(sc.next());
