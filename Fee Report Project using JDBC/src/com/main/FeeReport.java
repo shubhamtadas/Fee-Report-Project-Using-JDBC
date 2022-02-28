@@ -82,43 +82,44 @@ public static void main(String[] args) {
 					
 					switch(ch) {
 					case 1:	//.. add student
+						Student student = new Student();
 						System.out.println("Student Name: ");
-						String stName = sc.next();
+						student.setName(sc.next());
 						
 						System.out.println("Email: ");
-						String stEmail = sc.next();
+						student.setEmail(sc.next());
 						
 						System.out.println("Course: ");
-						String stCourse = sc.next();
+						student.setCourse(sc.next());
 						
 						System.out.println("Fee: ");
-						int stFee = sc.nextInt();
+						student.setFee(sc.nextInt());
 						
 						System.out.println("Paid: ");
-						int stPaid = sc.nextInt();
+						student.setPaid(sc.nextInt());
 						
-						int stDue = stFee-stPaid;
+						System.out.println("Due: ");
+						student.setDue(sc.nextInt());
 						
 						System.out.println("Address: ");
-						String stAddress = sc.next();
+						student.setAddress(sc.next());
 						
 						System.out.println("City: ");
-						String stCity = sc.next();
+						student.setCity(sc.next());
 						
 						System.out.println("State: ");
-						String stState = sc.next();
+						student.setState(sc.next());
 						
 						System.out.println("Country: ");
-						String stCountry = sc.next();
+						student.setCountry(sc.next());
 						
 						System.out.println("Contact No: ");
-						String stContact = sc.next();
+						student.setContact(sc.next());
 						
-						Student student = new Student(stName, stEmail, stCourse, stFee, stPaid, stDue, stAddress, stCity, stState, stCountry, stContact);
-						
-						stDaoObj.addStudent(student);
-						System.out.println("\nStudent added successfully !!");
-						
+						boolean ch1 = stDaoObj.addStudent(student);
+						if(ch1) {
+							System.out.println("\nStudent added successfully !!");
+						}
 						break;
 							
 					case 2: //.. view accountant
@@ -126,41 +127,44 @@ public static void main(String[] args) {
 						System.out.println(al);
 						break;
 					case 3:	//.. edit student
+						Student student1 = new Student();
 						System.out.println("\nEnter Roll no: ");
 						int rollNo = sc.nextInt();
+						
 						System.out.println("Student Name: ");
-						String stName1 = sc.next();
+						student1.setName(sc.next());
 						
 						System.out.println("Email: ");
-						String stEmail1 = sc.next();
+						student1.setEmail(sc.next());
 						
 						System.out.println("Course: ");
-						String stCourse1 = sc.next();
+						student1.setCourse(sc.next());
 						
 						System.out.println("Fee: ");
-						int stFee1 = sc.nextInt();
+						student1.setFee(sc.nextInt());
 						
 						System.out.println("Paid: ");
-						int stPaid1 = sc.nextInt();
+						student1.setPaid(sc.nextInt());
 						
-						int stDue1 = stFee1-stPaid1;
+						System.out.println("Due: ");
+						student1.setDue(sc.nextInt());
 						
 						System.out.println("Address: ");
-						String stAddress1 = sc.next();
+						student1.setAddress(sc.next());
 						
 						System.out.println("City: ");
-						String stCity1 = sc.next();
+						student1.setCity(sc.next());
 						
 						System.out.println("State: ");
-						String stState1 = sc.next();
+						student1.setState(sc.next());
 						
 						System.out.println("Country: ");
-						String stCountry1 = sc.next();
+						student1.setCountry(sc.next());
 						
 						System.out.println("Contact No: ");
-						String stContact1 = sc.next();
+						student1.setContact(sc.next());
 						
-						Student student1 = new Student(stName1, stEmail1, stCourse1, stFee1, stPaid1, stDue1, stAddress1, stCity1, stState1, stCountry1, stContact1);
+//						Student student1 = new Student(stName1, stEmail1, stCourse1, stFee1, stPaid1, stDue1, stAddress1, stCity1, stState1, stCountry1, stContact1);
 						boolean check = stDaoObj.editStudent(rollNo,student1);
 						if(check) {
 							System.out.println("Student Updated Successfully");
