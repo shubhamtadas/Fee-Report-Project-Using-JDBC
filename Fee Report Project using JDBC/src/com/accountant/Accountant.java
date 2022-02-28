@@ -6,12 +6,6 @@ public class Accountant {
 	long contactno;
 	public Accountant() {
 	}
-//	public Accountant(String name, String password, String email, long contactno) {
-//		this.name = name;
-//		this.password = password;
-//		this.email = email;
-//		this.contactno = contactno;
-//	}
 	public int getId() {
 		return id;
 	}

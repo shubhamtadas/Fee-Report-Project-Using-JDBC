@@ -7,17 +7,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.connectionProvider.CP;
+
 public class AccountantDaoImpl implements AccountantDao {
-	String JdbcURL = "jdbc:mysql://localhost:3306/feereport";
-    String Username = "root";
-    String password = "root";
+
     Connection con = null;
     @Override
 	public boolean accountantLogin(String acc_name, String acc_password) {
     	boolean flag = false;
     	try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(JdbcURL, Username, password);
+    		Connection con = CP.createC(); // from CP class
 			Statement smt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			
 			String q="SELECT acc_name,acc_pass from accountant";
@@ -44,8 +43,7 @@ public class AccountantDaoImpl implements AccountantDao {
 	    String query = "INSERT INTO accountant(acc_name,acc_pass,acc_email,acc_contact)" + "VALUES (?,?,?,?)";
 	    try {
   	   	  
-	    	 Class.forName("com.mysql.cj.jdbc.Driver");
-	         con = DriverManager.getConnection(JdbcURL, Username, password);
+	    	Connection con = CP.createC();
 	         pstmt = con.prepareStatement(query);
 	         pstmt.setString(1, accountant.getName());
 	         pstmt.setString(2, accountant.getPassword());
@@ -66,17 +64,10 @@ public class AccountantDaoImpl implements AccountantDao {
 		ArrayList <String> accData = new ArrayList<String>();
 		int no_of_column=5;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(JdbcURL, Username, password);
+			Connection con = CP.createC();
 			Statement smt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			
 			String q= "select * from accountant";
-//			String noOfCol = "SELECT count(*) as No_of_Column FROM information_schema.columns WHERE table_name ='accountant' ";
-			
-//			ResultSet cs = smt.executeQuery(noOfCol);
-//			if(cs.next()){ 
-//				no_of_column = rs.getInt(1);
-//			}
 			
 			ResultSet rs=smt.executeQuery(q);
 			if(rs.next()){ 

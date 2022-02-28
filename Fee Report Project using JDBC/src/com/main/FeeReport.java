@@ -70,7 +70,6 @@ public static void main(String[] args) {
 			break; //.. end of case 1
 			
 		case 2:  // accountant login
-			boolean flag2 = false;
 			System.out.println("\nEnter Accountant Name: ");
 			String accName = sc.next();
 			System.out.println("\nEnter Password: ");

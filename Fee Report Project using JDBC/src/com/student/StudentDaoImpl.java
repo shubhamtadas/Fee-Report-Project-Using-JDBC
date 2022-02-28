@@ -7,10 +7,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.connectionProvider.CP;
+
 public class StudentDaoImpl implements StudentDao{
-	String JdbcURL = "jdbc:mysql://localhost:3306/feereport";
-    String Username = "root";
-    String password = "root";
+
     Connection con = null;
 	@Override
 	public boolean addStudent(Student student) {
@@ -19,8 +19,7 @@ public class StudentDaoImpl implements StudentDao{
 	    String query = "INSERT INTO student(st_name, st_email, st_course, st_fee, st_paid, st_due, st_address, st_city, st_state, st_country, st_contact)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	    try {
   	   	  
-	    	 Class.forName("com.mysql.cj.jdbc.Driver");
-	         con = DriverManager.getConnection(JdbcURL, Username, password);
+	    	Connection con = CP.createC(); // from CP class
 	         pstmt = con.prepareStatement(query);
 	         pstmt.setString(1, student.getName());
 	         pstmt.setString(2, student.getEmail());
@@ -48,8 +47,7 @@ public class StudentDaoImpl implements StudentDao{
 		ArrayList <String> accData = new ArrayList<String>();
 		int no_of_column=12;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(JdbcURL, Username, password);
+			Connection con = CP.createC();
 			Statement smt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			
 			String q= "select * from student";
@@ -77,8 +75,7 @@ public class StudentDaoImpl implements StudentDao{
 	public ArrayList<Integer> dueFee(int roll) {
 		ArrayList <Integer> dueData = new ArrayList<Integer>();
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(JdbcURL, Username, password);
+			Connection con = CP.createC();
 			Statement smt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			
 			String q= "select st_roll,st_due from student";
@@ -102,11 +99,10 @@ public class StudentDaoImpl implements StudentDao{
 	public boolean editStudent(int roll,Student student) {
 		boolean flag=false;
 		PreparedStatement pstmt = null;
-//		ArrayList <String> edited = new ArrayList<String>();
+
 		String q= "update student set  st_name=?,st_email=?,st_course=?,st_fee=?,st_paid=?,st_due=?,st_address=?,st_city=?,st_state=?,st_country=?,st_contact=? where st_roll=?";
 		 try {
-	  	   	 Class.forName("com.mysql.cj.jdbc.Driver");
-	         con = DriverManager.getConnection(JdbcURL, Username, password);
+			 Connection con = CP.createC();
 	         pstmt = con.prepareStatement(q);
 	         pstmt.setString(1, student.getName());
 	         pstmt.setString(2, student.getEmail());
@@ -130,9 +126,5 @@ public class StudentDaoImpl implements StudentDao{
 	      }
 		return(flag);
 	}
-//	@Override
-//	public boolean checkStudent(int roll) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
+
 }

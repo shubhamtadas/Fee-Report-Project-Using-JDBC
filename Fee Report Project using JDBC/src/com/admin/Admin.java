@@ -5,16 +5,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.connectionProvider.CP;
+
 public class Admin {
-	static String JdbcURL = "jdbc:mysql://localhost:3306/feereport";
-	static String Username = "root";
-	static String password = "root";
-	static Connection con = null;
+
 	boolean flag = false;
 	public boolean adminLogin(String admName, String admPassword) {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(JdbcURL, Username, password);
+			Connection con = CP.createC(); // from CP class
 			Statement smt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			
 			String q="SELECT adm_name,adm_pass from admin";

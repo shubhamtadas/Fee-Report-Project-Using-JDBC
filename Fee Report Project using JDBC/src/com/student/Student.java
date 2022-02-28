@@ -5,21 +5,7 @@ public class Student {
 	private String name,email,course,address,city,state,country,contact;
 	   private int fee,paid,due;
 	   public Student(){}
-//	   public Student(String name,String email, String course, int fee, int paid, int due, String address, String city, String state, String country, String contact )
-//	   {
-//	      this.name = name;
-//	      this.email = email;
-//	      this.course = course;
-//	      this.fee = fee;
-//	      this.paid = paid;
-//	      this.due = due;
-//	      this.address = address;
-//	      this.city = city;
-//	      this.state = state;
-//	      this.country = country;
-//	      this.contact = contact;
-//	   }
-//	   
+  
 	   public int getRollNo() {
 		      return rollNo;
 	   }
